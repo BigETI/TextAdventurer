@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TextAdventurer": {
+      "commandName": "Project",
+      "commandLineArgs": "./Stories/WolfChildsJourney/WolfchildsJourney.json"
+    }
+  }
+}

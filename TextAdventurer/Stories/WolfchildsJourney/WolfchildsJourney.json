@@ -1,0 +1,428 @@
+{
+  "title": "<Green>Wolfchild's Journey <Default>(The Text Adventure)",
+  "author": "<Cyan>Ethem <Red>Kurt",
+  "license": "<Gray>https://github.com/BigETI/TextAdventurer/blob/master/LICENSE",
+  "description": "<Green>Wolfchild's Journey <Default>is a <Cyan>story <Default>about a <Red>\"child\" <Default>getting abandoned in a forest.\nThe goal is to <Green>explore <Default>the environment and <Red>find <Default>back home.\nThe protagonist believes that the family loves it,\ndenying that the family could despise its existence.",
+  "themes": {
+    "default": {
+    },
+    "danger": {
+      "backgroundColor": "DarkRed",
+      "hintBackgroundColor": "DarkRed",
+      "selectionForegroundColor": "DarkRed"
+    },
+    "success": {
+      "backgroundColor": "DarkGreen",
+      "hintBackgroundColor": "DarkGreen",
+      "selectionForegroundColor": "DarkGreen"
+    },
+    "calm": {
+      "backgroundColor": "DarkCyan",
+      "hintBackgroundColor": "DarkCyan",
+      "selectionForegroundColor": "DarkCyan"
+    }
+  },
+  "initialState": {
+    "text": "You are <Green>sleeping <Default>on your comfortable bed.\nSuddenly you hear a door bell ringing. There are <Red>people <Default>outside.\nYou can't resist to <Green>wake up <Default>because of that.",
+    "options": {
+      "wake up": "day-0",
+      "?w": "day-0",
+      "?wake": "day-0",
+      "?wakeup": "day-0"
+    },
+    "states": {
+      "day-0": {
+        "text": "Who could be <Red>ringing <Default>the door bell at this evening?\nYou hear noises of people talking and someone started to <Red>cry <Default>very loud.",
+        "options": {
+          "lie down": "bed",
+          "investigate situation": "living-room",
+          "?lie": "bed",
+          "?liedown": "bed",
+          "?investigate": "living-room"
+        },
+        "states": {
+          "bed": {
+            "text": "For some reason you can't think about other than to see what is going on,\nyet you want to stay on your comfortable bed.\nThe situation <Red>scares <Default>you somehow...",
+            "options": {
+              "investigate situation": "../living-room",
+              "stay": "bed",
+              "?investigate": "../living-room",
+              "?lie down": "bed",
+              "?lie": "bed",
+              "?liedown": "bed"
+            },
+            "states": {
+              "bed": {
+                "text": "You have that very urge to investigate the current situation...",
+                "options": {
+                  "investigate": "../../living-room",
+                  "stay": "bed",
+                  "?lie down": "bed",
+                  "?lie": "bed",
+                  "?liedown": "bed"
+                },
+                "states": {
+                  "bed": {
+                    "text": "All the noises are <Green>gone<Default>.\nMaybe those people are gone for good.\nYou still feel an urge to <Green>investigate <Default>the situation.",
+                    "options": {
+                      "investigate situation": "/day-0/living-room/empty",
+                      "stay": "/day-0/room",
+                      "?investigate": "/day-0/living-room/empty",
+                      "?move": "/day-0/living-room/empty",
+                      "?lie down": "/day-0/room",
+                      "?lie": "/day-0/room",
+                      "?liedown": "/day-0/room"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "living-room": {
+            "text": "You see your <Red>parents <Default>at the door.\nYour mother is <Red>crying <Default>very loud.\nWhy is she so upset?",
+            "options": {
+              "ask questions": "empty",
+              "be quite": "empty",
+              "?ask": "empty",
+              "?quite": "empty",
+              "?shut up": "empty",
+              "?shut": "empty",
+              "?bark": "empty"
+            },
+            "states": {
+              "empty": {
+                "text": "Everyone but you went outside.\nIt looks like they have ignored you.\n\nYou see some <Green>delicious <Default>food, but it is past bed time...",
+                "options": {
+                  "eat": "ate",
+                  "wait": "parents",
+                  "go back": "/day-0/room",
+                  "?feast": "ate",
+                  "?back": "/day-0/room"
+                },
+                "states": {
+                  "ate": {
+                    "text": "You ate some delicious <Green>food<Default>.",
+                    "options": {
+                      "wait": "../parents",
+                      "go back": "/day-0/room",
+                      "?back": "/day-0/room"
+                    }
+                  },
+                  "parents": {
+                    "text": "You see your parents coming in.\nYou have an urge to ask them what was going on.",
+                    "options": {
+                      "ask question": "asking",
+                      "stare": "staring",
+                      "?ask": "asking",
+                      "?bark": "barking"
+                    },
+                    "states": {
+                      "asking": {
+                        "text": "You are asking your parents what is going on.\nYour dad tells you to go back to your room,\nyou have no business in lurkign around here.",
+                        "options": {
+                          "go back": "/day-0/room",
+                          "?back": "/day-0/room"
+                        }
+                      },
+                      "barking": {
+                        "text": "\"Come one <Green>{0}<Default>, stop barking! Go back to your room.\"",
+                        "options": {
+                          "go back": "/day-0/room",
+                          "?back": "/day-0/room"
+                        }
+                      },
+                      "staring": {
+                        "text": "\"Stop staring at me <Green>{0}<Default>! You have no business to lurk around here past bed time. Go back to your room!\"",
+                        "options": {
+                          "go back": "/day-0/room",
+                          "?back": "/day-0/room"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "room": {
+            "text": "You are in your room and your comfortable bed.\nYou feel so <Red>tired<Default>.",
+            "options": {
+              "sleep": "/day-1"
+            }
+          }
+        }
+      },
+      "day-1": {
+        "text": "\"<Green>{0}<Default>! <Green>{0}<Default>!!\nLet's go outside!\"\nYou can't wait to respond to that call.",
+        "options": {
+          "respond": "responding",
+          "do nothing": "nothing",
+          "?nothing": "nothing"
+        },
+        "states": {
+          "bear-death": {
+            "text": "You were <Red>killed <Default>by that angry bear.",
+            "mood": "death"
+          },
+          "cold-death": {
+            "text": "You just <Red>died <Default>by hyperthermia.",
+            "mood": "death"
+          },
+          "deep-forest": {
+            "text": "You wake up within a deep forest.\nWhy does this forest look magical, yet mysterious?",
+            "options": {
+              "explore": "starving",
+              "?bark": "starving"
+            },
+            "states": {
+              "evening": {
+                "text": "It gets <Red>dark <Default>and <Red>cold <Default>very quick.\nI think it is time to <Green>find <Default>some shelter.",
+                "options": {
+                  "explore more": "/day-1/cold-death",
+                  "find shelter": "../shelter",
+                  "?explore": "/day-1/cold-death",
+                  "?find": "../shelter"
+                }
+              },
+              "full": {
+                "text": "You managed to find something to <Green>eat<Default>,\nand there is a pond you were <Green>drinking <Default>from.\nNo food ever tasted so good.\n\nYou still see that glowing <Red>object <Default>from far away.",
+                "options": {
+                  "climb wall": "climbing",
+                  "?climb": "climbing"
+                },
+                "states": {
+                  "climbing": {
+                    "text": "You climbed the wall with ease.\nThat <Green>object <Default>looks like a strange orb.\nYou get fascinated by the glowing <Green>power <Default>of that orb.",
+                    "options": {
+                      "take orb": "../../special-1",
+                      "leave orb": "../../no-special",
+                      "?take": "../../special-1",
+                      "?leave": "../../no-special"
+                    }
+                  }
+                }
+              },
+              "no-special": {
+                "text": "You did not take the <Green>orb.\nIt might be dangerous to touch.\n\nAnyway you see a ledge to <Green>jump <Default>to, which might be dangerous.",
+                "options": {
+                  "jump": "/day-1/injury-death",
+                  "take orb": "../special-1",
+                  "?yeet": "/day-1/injury-death",
+                  "?yeet!": "/day-1/injury-death",
+                  "?take": "../special-1"
+                }
+              },
+              "shelter": {
+                "text": "You <Green>found <Default>a relatively warm place to sleep.\nThe trees are shivering and the forest night animals are making noises.",
+                "options": {
+                  "listen to the forest": "./",
+                  "sleep": "/day-2",
+                  "?listen": "./",
+                  "?listen to": "./"
+                }
+              },
+              "special-1": {
+                "text": "You took the orb.\nYou feel mysterious power flowing through your body.\nYou feel the urge to <Green>jump <Default>in mid air...\nVery strange...\nAnyway the ledge to jump looks very easy.",
+                "options": {
+                  "jump": "jumped",
+                  "?yeet": "jumped",
+                  "?yeet!": "jumped"
+                },
+                "states": {
+                  "jumped": {
+                    "text": "You took that <Green>jump <Default>like a god.\nYou find more stuff in that deep forest to <Green>explore<Default>.",
+                    "options": {
+                      "explore more": "../../evening",
+                      "?explore": "../../evening"
+                    }
+                  }
+                }
+              },
+              "starving": {
+                "text": "You are hurt and <Red>starving<Default>.\nYou also see an object glowing in a high place.",
+                "options": {
+                  "climb": "climbing",
+                  "find food": "../full",
+                  "?food": "../full"
+                },
+                "states": {
+                  "starving": {
+                    "text": "You are trying to climb the stone wall, but you are very <Red>hungry<Default>. If you keep going, you will <Red>starve <Default>to death.",
+                    "options": {
+                      "keep climbing": "/day-1/starving-death",
+                      "find food": "../../full",
+                      "?keep going": "/day-1/starving-death",
+                      "?climb": "/day-1/starving-death",
+                      "?food": "../../full"
+                    },
+                    "states": {
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "forest": {
+            "text": "Your dad tells you to wait there, goes back to his car, and drives away!?!",
+            "options": {
+              "what?": "alone",
+              "?what": "alone",
+              "?wtf": "alone",
+              "?wtf?": "alone",
+              "?what the fuck": "alone",
+              "?what the fuck?": "alone",
+              "?nani": "alone",
+              "?nani?": "alone"
+            },
+            "states": {
+              "alone": {
+                "text": "How could that happen?\nDid he just <Red>abandon <Default>you in a forest?\nWhat in the world is going on?",
+                "options": {
+                  "explore forest": "../exploring",
+                  "shout": "shouting",
+                  "?explore": "../exploring",
+                  "?bark": "barking"
+                },
+                "states": {
+                  "barking": {
+                    "text": "You are <Red>barking <Default>out of your lungs...\nNo one is here to hear you.\nYou feel lonely...",
+                    "options": {
+                      "explore forest": "../../exploring",
+                      "shout": "../shouting",
+                      "?explore": "../../exploring",
+                      "?bark": "./"
+                    }
+                  },
+                  "shouting": {
+                    "text": "You are <Red>shouting <Default>out of your lungs...\nNo one is here to hear you.\nYou get anxious...",
+                    "options": {
+                      "explore forest": "../../exploring",
+                      "shout": "./",
+                      "?explore": "../../exploring",
+                      "?bark": "../barking"
+                    }
+                  }
+                }
+              },
+              "exploring": {
+                "text": "You are exploring the forest, suddenly a <Red>bear <Default>appears. It seems to be very angry.",
+                "options": {
+                  "run for your life": "../running",
+                  "talk": "/day-1/bear-death",
+                  "taunt": "/day-1/bear-death",
+                  "?run": "../running"
+                },
+                "mood": "danger"
+              },
+              "falling": {
+                "text": "You fell into a pit.\nYou have no idea, if the bear fell into the same pit with you.\nYou hit your head very hard and pass out.\n\nAfter many hours you hear birds chriping.",
+                "options": {
+                  "wake up": "/day-1/deep-forest"
+                }
+              },
+              "running": {
+                "text": "You are <Green>running <Default>for your life.\nYou haven't done anything wrong, yet an angry <Red>bear <Default>chases you.\n\nThere is an obstacle on your way.\nIt could be dangerous to jump over it.",
+                "options": {
+                  "jump anyway": "avoiding-obstacle",
+                  "stop": "/day-1/bear-death",
+                  "?jump": "avoiding-obstacle",
+                  "?halt": "/day-1/bear-death"
+                },
+                "states": {
+                  "avoiding-obstacle": {
+                    "text": "You avoided that obstacle <Red>LIKE A BOSS<Default>!\nYou are not sure, if the bear still follows you.",
+                    "options": {
+                      "keep running": "../../falling",
+                      "stop": "/day-1/bear-death",
+                      "?run": "../../falling",
+                      "?halt": "/day-1/bear-death"
+                    }
+                  }
+                },
+                "mood": "danger"
+              }
+            }
+          },
+          "going-out": {
+            "text": "Your father tells you to <Green>hop <Default>into the car",
+            "options": {
+              "hop in": "car",
+              "hesitate": "hesitating",
+              "?enter": "car",
+              "?wait": "hesitating"
+            },
+            "states": {
+              "car": {
+                "text": "You jumped right into the car.\nYou both take a long ride.\nYour dad mumbles something to himself,\nbut you don't really mind about that.\n\nAt some point you reach a place with a lot of green.\nWhat is this place?\nIs this a <Green>forest<Default>?",
+                "options": {
+                  "leave car": "../../forest",
+                  "stay in car": "staying",
+                  "?leave": "../../forest",
+                  "?stay": "staying"
+                },
+                "states": {
+                  "staying": {
+                    "text": "\"Come one <Green>{0}<Default>... Don't make this situation harder than it is.\"\nYou feel very uncomfortable...",
+                    "options": {
+                      "go out": "/day-1/forest",
+                      "stay in car": "./",
+                      "?go": "/day-1/forest",
+                      "?stay": "./"
+                    }
+                  }
+                }
+              },
+              "hesitating": {
+                "text": "You are hesitating to enter the car.\n\"Come on, don't be shy.\"",
+                "options": {
+                  "enter car": "../car",
+                  "hesitate": "./",
+                  "?enter": "../car",
+                  "?stay": "./"
+                }
+              }
+            }
+          },
+          "injury-death": {
+            "text": "You just <Red>died <Default>by your injuries.",
+            "mood": "death"
+          },
+          "nothing": {
+            "text": "You just did not <Green>respond <Default>the call.\nYou get <Red>nervous <Default>what is going to happen.\nYou <Green>hear <Default>another call from your father.",
+            "options": {
+              "respond": "../responding",
+              "do nothing": "nothing",
+              "?nothing": "nothing"
+            },
+            "states": {
+              "nothing": {
+                "text": "You just did not <Green>respond <Default>to the calls at all.\nYour father enters your room, and tells you to <Green>come <Default>with him.",
+                "options": {
+                  "follow him": "/day-1/going-out",
+                  "?follow": "/day-1/going-out"
+                }
+              }
+            }
+          },
+          "responding": {
+            "text": "You have responded to that call. \"{0}, let's do a trip!\" says your father.\nYou feel very happy that your dad wants to do a trip with you.",
+            "options": {
+              "go out": "../going-out",
+              "?go": "../going-out",
+              "?let's a go": "../going-out"
+            }
+          },
+          "starving-death": {
+            "text": "You just <Red>starved <Default>to death.",
+            "mood": "death"
+          }
+        }
+      },
+      "day-2": {
+        "text": "This game is not complete.\nThank you for playing this game!",
+        "success": true,
+        "mood": "success"
+      }
+    }
+  }
+}

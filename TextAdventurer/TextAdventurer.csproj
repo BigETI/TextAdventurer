@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="FastConsoleUI">
-      <HintPath>..\..\FastConsoleUI\FastConsoleUI\bin\Release\netstandard2.0\FastConsoleUI.dll</HintPath>
+      <HintPath>..\..\FastConsoleUI\FastConsoleUI\bin\Debug\netstandard2.0\FastConsoleUI.dll</HintPath>
     </Reference>
   </ItemGroup>
 
